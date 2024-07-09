@@ -1,16 +1,19 @@
 
 // websocket  in node.js
 
-import WebSocket from 'ws';
+import { WebSocketServer } from "ws";
 
-const ws = new WebSocket('ws://www.host.com/path');
+const wss = new WebSocketServer({port: 8080})
 
-ws.on('error', console.error);
+wss.on('connection', function connection(ws){
+  
+  ws.on('error', console.error);
 
-ws.on('open', function open() {
-  ws.send('something');
-});
+  ws.on('message', function message(data) {
+    console.log('received: %s', data);
+  });
 
-ws.on('message', function message(data) {
-  console.log('received: %s', data);
-});
+  ws.send('e4 e5')
+}) 
+
+
