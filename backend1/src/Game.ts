@@ -36,6 +36,8 @@ export class Game{
             return
         }
 
+        // check if the game is Over
+
         if(this.board.isGameOver()) {
             // send the game over message to both player
             this.player1.emit(JSON.stringify({
@@ -48,7 +50,7 @@ export class Game{
         }
 
 
-        // check if the game is User
+        
 
         // send the updated board to both player
     }
