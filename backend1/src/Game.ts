@@ -1,31 +1,52 @@
 
 import {WebSocket} from "ws";
-
+import {Chess} from 'chess.js'
+import { GAME_OVER } from "./message";
 
 export class Game{
 
     public player1: WebSocket;
     public player2: WebSocket;
-    private board: string;
-    private moves: string[];
+    public board: Chess
     private startTime: Date;
 
     constructor(player1: WebSocket, player2: WebSocket) {
         this.player1 = player1;
         this.player2 = player2
-        this.board = ""
-        this.moves = [];
+        this.board = new Chess();
         this.startTime = new Date();
     }
 
 
-    makeMove(socket: WebSocket, move: string) {
-        // validation her
-        // if it this user move
-        // is the move valid
+    makeMove(socket: WebSocket, move: {
+        from: string,
+        to: string,
+    }) {
+        // validate the type of move using zod
+        if(this.board.moves.length % 2 === 0 && socket !== this.player1) {
+            return 
+        }
+        if(this.board.moves.length % 2 === 0 && socket !== this.player2) {
+            return
+        }
 
-        // update the board
-        // push the move
+        try{
+            this.board.move(move)
+        } catch(e) {
+            return
+        }
+
+        if(this.board.isGameOver()) {
+            // send the game over message to both player
+            this.player1.emit(JSON.stringify({
+                type: GAME_OVER,
+                payload: {
+                    winner: this.board.turn() === "w" ? "black" : "white"
+                }
+            }))
+            return;
+        }
+
 
         // check if the game is User
 
