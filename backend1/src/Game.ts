@@ -4,8 +4,8 @@ import {WebSocket} from "ws";
 
 export class Game{
 
-    private player1: WebSocket;
-    private player2: WebSocket;
+    public player1: WebSocket;
+    public player2: WebSocket;
     private board: string;
     private moves: string[];
     private startTime: Date;
@@ -16,5 +16,19 @@ export class Game{
         this.board = ""
         this.moves = [];
         this.startTime = new Date();
+    }
+
+
+    makeMove(socket: WebSocket, move: string) {
+        // validation her
+        // if it this user move
+        // is the move valid
+
+        // update the board
+        // push the move
+
+        // check if the game is User
+
+        // send the updated board to both player
     }
 }
