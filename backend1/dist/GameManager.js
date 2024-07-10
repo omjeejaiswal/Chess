@@ -32,12 +32,16 @@ class GameManager {
                     this.pendingUser = socket;
                 }
             }
+            console.log("1");
             if (message.type === message_1.MOVE) {
+                console.log("inside move");
                 const game = this.games.find(game => game.player1 === socket || game.player2 === socket);
+                console.log("11");
                 if (game) {
                     console.log("inside make move");
                     game.makeMove(socket, message.move);
                 }
+                console.log("2");
             }
         });
     }
