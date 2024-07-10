@@ -1,7 +1,7 @@
 
 import { WebSocket } from "ws";
 import { Game } from "./Game";
-import { MOVE } from "./message";
+import { MOVE, INIT_GAME } from "./message";
 
 //User, Game
 
@@ -31,7 +31,7 @@ export class GameManager {
         socket.on("message", (data) => {
             const message = JSON.parse(data.toString());
             
-            if(message.type === "INIT_GAME") {
+            if(message.type === INIT_GAME) {
                 if(this.pendingUser) {
                     // strat a game
                     const game = new Game(this.pendingUser, socket)
@@ -46,6 +46,7 @@ export class GameManager {
             if(message.type === MOVE) {
                 const game = this.games.find(game => game.player1 === socket || game.player2 === socket)
                 if(game) {
+                    console.log("inside make move")
                     game.makeMove( socket , message.move)
                 }
             }
