@@ -6,6 +6,7 @@ import { GameManager } from "./GameManager";
 
 const wss = new WebSocketServer({port: 8080})
 
+// inistailze the game manager
 const gameManager = new GameManager();
 
 wss.on('connection', function connection(ws){
