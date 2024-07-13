@@ -1,13 +1,13 @@
 
 import {WebSocket} from "ws";
-import {Chess} from 'chess.js'
+import {Chess} from 'chess.js';
 import { GAME_OVER, INIT_GAME, MOVE } from "./message";
 
 export class Game{
 
     public player1: WebSocket;
     public player2: WebSocket;
-    public board: Chess
+    public board: Chess;
     private startTime: Date;
 
     constructor(player1: WebSocket, player2: WebSocket) {
@@ -31,23 +31,23 @@ export class Game{
 
 
     makeMove(socket: WebSocket, move: {
-        from: string,
-        to: string,
+        from: string;
+        to: string;
     }) {
         // validate the type of move using zod
         if(this.board.moves.length % 2 === 0 && socket !== this.player1) {
-            return 
+            return;
         }
-        if(this.board.moves.length % 2 === 0 && socket !== this.player2) {
-            return
+        if(this.board.moves.length % 2 === 1 && socket !== this.player2) {
+            return;
         }
         console.log("did not early return")
 
         try{
-            this.board.move(move)
+            this.board.move(move);
         } catch(e) {
             console.log(e)
-            return
+            return;
         }
         console.log("move successed")
         // check if the game is Over
@@ -68,16 +68,17 @@ export class Game{
             }))
             return;
         }
+
         console.log(this.board.moves.length % 2)
         if(this.board.moves.length % 2 === 0) {
             console.log("sent1")
-            this.player2.emit(JSON.stringify({
+            this.player2.send(JSON.stringify({
                 type: MOVE,
                 payload: move
             }))
         } else{
             console.log("sent2")
-            this.player1.emit(JSON.stringify({
+            this.player1.send(JSON.stringify({
                 type: MOVE,
                 payload: move
             }))
