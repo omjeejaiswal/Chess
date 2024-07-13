@@ -27,7 +27,7 @@ class Game {
         if (this.board.moves.length % 2 === 0 && socket !== this.player1) {
             return;
         }
-        if (this.board.moves.length % 2 === 0 && socket !== this.player2) {
+        if (this.board.moves.length % 2 === 1 && socket !== this.player2) {
             return;
         }
         console.log("did not early return");
@@ -59,14 +59,14 @@ class Game {
         console.log(this.board.moves.length % 2);
         if (this.board.moves.length % 2 === 0) {
             console.log("sent1");
-            this.player2.emit(JSON.stringify({
+            this.player2.send(JSON.stringify({
                 type: message_1.MOVE,
                 payload: move
             }));
         }
         else {
             console.log("sent2");
-            this.player1.emit(JSON.stringify({
+            this.player1.send(JSON.stringify({
                 type: message_1.MOVE,
                 payload: move
             }));
