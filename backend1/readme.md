@@ -45,11 +45,31 @@ then you received message.
 
 next step 
 
-now to tab1
+now to tab1  -- Start from white 
 {
   "type": "move",
   "move": {
     "from" : "a2",
     "to": "a3"
+  }
+}
+
+then black moves ---- 
+{
+  "type": "move",
+  "move": {
+    "from" : "a7",
+    "to": "a6"
+  }
+}
+
+then also check the white moves also -- 
+it was a knight moves
+
+{
+  "type": "move",
+  "move": {
+    "from": "g1",
+    "to": "f3"
   }
 }
