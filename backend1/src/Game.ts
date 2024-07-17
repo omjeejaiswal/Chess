@@ -68,12 +68,22 @@ export class Game {
                 payload: {
                     winner
                 }
+
+                //OR
+
+                // type: MOVE,
+                // payload: move
             }));
             this.player2.send(JSON.stringify({
                 type: GAME_OVER,
                 payload: {
                     winner
                 }
+
+                // OR
+
+                // type: MOVE,
+                // payload: move
             }));
             return;
         }
