@@ -1,6 +1,9 @@
 
 // // use this if want to use this 
 
+import { useNavigate } from "react-router-dom"
+import { Button } from "../components/Button";
+
 // import React from 'react';
 
 // export const Landing = () => {
@@ -36,8 +39,11 @@
 
 
 export const Landing = () => {
-    return <div>
-        <div className="pt-8">
+
+    const navigate = useNavigate();
+
+    return <div className="flex justify-center">
+        <div className="pt-8 max-w-screen-lg">
             <div className="grid grid-cols-1 gap-4
                 md:grid-cols-2" >
 
@@ -45,13 +51,18 @@ export const Landing = () => {
                     <img src={"/ChessBoard.webp"} className="max-w-96" />
                 </div>
 
-                <div>
-                    <h1 className="text-4xl font-bold text-white display-flex"> Play chess online on the <br /> #2 site!</h1>
-                    <div className="mt-4">
-                        <button className="bg-blue-500
-                        hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">
+                <div className="pt-16" >
+                    <div className="flex justify-center">
+                        <h1 className="text-4xl font-bold text-white display-flex"> Play chess online on the  #2 site!</h1>
+                    </div>
+
+                    
+                    <div className="mt-4 flex justify-center">
+                        <Button onClick = {() => {
+                            navigate("/game")
+                        }}>
                             Play Online
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>
