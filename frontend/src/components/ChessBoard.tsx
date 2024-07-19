@@ -4,7 +4,9 @@ import { MOVE } from "../screens/Game";
 
 
 
-export const ChessBoard = ({board, socket} : {
+export const ChessBoard = ({chess ,board, socket, setBoard} : {
+    chess: any,
+    setBoard: any;
     board: ({
         square: Square;
         type: PieceSymbol;
@@ -20,8 +22,8 @@ export const ChessBoard = ({board, socket} : {
         {board.map((row, i) => {
             return <div key={i} className="flex ">
                 {row.map((square, j) => {
-                    const sqaureRepresentation = String.fromCharCode(65 + (j%8)) + "" + 
-                       (8 - Math.floor(( i + j)/8)) as Square;
+                    const sqaureRepresentation = String.fromCharCode(97 + (j%8)) + "" + 
+                       (8 - i) as Square;
                     
                     return <div onClick={() => {
                         if(!from) {
@@ -31,11 +33,19 @@ export const ChessBoard = ({board, socket} : {
                             socket.send(JSON.stringify({
                                 type: MOVE,
                                 payload: {
-                                    from,
-                                    to: sqaureRepresentation
+                                    move: {
+                                        from,
+                                        to: sqaureRepresentation
+                                    }
                                 }
                             }))
+
                             setFrom(null)
+                            chess.move({
+                                from,
+                                to: sqaureRepresentation
+                            });
+                            setBoard(chess.board());
                             console.log({
                                 from,
                                 to: sqaureRepresentation
