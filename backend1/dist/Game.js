@@ -25,11 +25,11 @@ class Game {
     makeMove(socket, move) {
         console.log(`Attempting to make move: ${JSON.stringify(move)} by player: ${socket === this.player1 ? "player1" : "player2"}`);
         // Ensure the correct player is making the move
-        if (this.board.history().length % 2 === 0 && socket !== this.player1) {
+        if (this.board.moves().length % 2 === 0 && socket !== this.player1) {
             console.log("Invalid move: Not player1's turn");
             return;
         }
-        if (this.board.history().length % 2 === 1 && socket !== this.player2) {
+        if (this.board.moves().length % 2 === 1 && socket !== this.player2) {
             console.log("Invalid move: Not player2's turn");
             return;
         }
@@ -51,12 +51,18 @@ class Game {
                 payload: {
                     winner
                 }
+                //OR
+                // type: MOVE,
+                // payload: move
             }));
             this.player2.send(JSON.stringify({
                 type: Message_1.GAME_OVER,
                 payload: {
                     winner
                 }
+                // OR
+                // type: MOVE,
+                // payload: move
             }));
             return;
         }
