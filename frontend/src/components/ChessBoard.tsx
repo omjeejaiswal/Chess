@@ -16,14 +16,12 @@ export const ChessBoard = ({chess ,board, socket, setBoard} : {
     socket: WebSocket;
 }) => {
     const [from, setFrom] = useState<null | Square>(null);
-    const[to, setTo] = useState<null | Square>(null);
 
     return <div className="text-white-200">
         {board.map((row, i) => {
             return <div key={i} className="flex ">
                 {row.map((square, j) => {
-                    const sqaureRepresentation = String.fromCharCode(97 + (j%8)) + "" + 
-                       (8 - i) as Square;
+                    const sqaureRepresentation = String.fromCharCode(97 + (j % 8)) + "" + (8 - i) as Square;
                     
                     return <div onClick={() => {
                         if(!from) {
