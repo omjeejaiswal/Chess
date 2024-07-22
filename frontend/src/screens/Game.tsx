@@ -15,11 +15,11 @@ export const Game = () => {
     const [board, setBoard] = useState(chess.board())
     const [started, setStarted] = useState(false);
 
-
     useEffect(()=>{
         if(!socket) {
             return;
         }
+        
         socket.onmessage = (event) => {
             const message = JSON.parse(event.data);
 
@@ -31,7 +31,7 @@ export const Game = () => {
                     setStarted(true);
                     console.log("Game initalized");
                     break;
-                    
+
                 case MOVE:
                     const move = message.payload;
                     chess.move(move);
