@@ -1,10 +1,7 @@
-
-// // use this if want to use this 
+ 
 
 import { useNavigate } from "react-router-dom"
 import { Button } from "../components/Button";
-
-// import React from 'react';
 
 export const Landing = () => {
     const navigate = useNavigate();
@@ -22,17 +19,19 @@ export const Landing = () => {
                         Play chess online on the <br /> #2 site!
                     </h1>
                     <div className="mt-4">
-                        <button onClick={() => {
+                        <Button onClick={() => {
                             navigate("/game")
-                        }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Play Online
-                        </button>
+                        }}>
+                            Play Online 
+                        </Button>
                     </div>
                 </div>
             </div>
         </div>
     );
 };
+
+// landing page 2
 
 // export const Landing = () => {
 
