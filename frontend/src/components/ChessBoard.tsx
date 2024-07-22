@@ -2,17 +2,15 @@ import { Color, PieceSymbol, Square } from "chess.js";
 import { useState } from "react";
 import { MOVE } from "../screens/Game";
 
-
-
 export const ChessBoard = ({chess ,board, socket, setBoard} : {
     chess: any,
     setBoard: any;
     board: ({
         square: Square;
         type: PieceSymbol;
-        color: Color
+        color: Color;
 
-    } | null)[][]
+    } | null)[][];
     socket: WebSocket;
 }) => {
     const [from, setFrom] = useState<null | Square>(null);
