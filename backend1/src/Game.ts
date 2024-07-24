@@ -325,8 +325,6 @@ export class Game{
     private startTime: Date;
     private moveCount = 0;
 
-
-    
     constructor(player1: WebSocket, player2: WebSocket) {
         this.player1 = player1;
         this.player2 = player2
