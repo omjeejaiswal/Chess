@@ -5,6 +5,16 @@ step 2-  cd backend1
 step 3 -  npm init -y    ----------// for package.json   
 step 4 -  npx tsc --init    
 
+to run the backend
+
+- tsc -b
+
+- node dist/index.js
+
+to run frontend code
+
+- npm run dev
+
 websocket 
 npm i ws
 npm i types/ws
